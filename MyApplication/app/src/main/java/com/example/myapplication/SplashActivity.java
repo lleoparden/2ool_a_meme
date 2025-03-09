@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.VideoView;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.MainActivity;
-import com.example.myapplication.R;
-
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -17,7 +14,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
 
-
+        // Hide navigation and status bars (Full-Screen Mode)
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -33,12 +30,12 @@ public class SplashActivity extends AppCompatActivity {
         String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.splash_video;
         videoView.setVideoURI(Uri.parse(videoPath));
 
-        // Start the video
-        videoView.start();
+        // Start the video only when it is prepared to prevent ANR
+        videoView.setOnPreparedListener(mp -> videoView.start());
 
-        // Set a listener to navigate to the next activity when the video finishes
+        // Navigate to OnboardingActivity when video finishes
         videoView.setOnCompletionListener(mp -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, onboardingActivity.class);
             startActivity(intent);
             finish(); // Close the splash activity
         });

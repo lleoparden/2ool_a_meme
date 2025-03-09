@@ -23,9 +23,16 @@
             </intent-filter>
         </activity>
 
-        <!-- Main Activity -->
+        <!-- onboarding Activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".onboardingActivity"
+            android:exported="true" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <!-- signin Activity -->
+        <activity
+            android:name=".signinActivity"
             android:exported="true" />
         <meta-data
             android:name="preloaded_fonts"
