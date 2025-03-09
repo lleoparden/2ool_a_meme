@@ -55,6 +55,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth-ktx:22.3.0")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("androidx.credentials:credentials:1.2.0")
+    implementation ("com.google.firebase:firebase-database-ktx:20.2.2")
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

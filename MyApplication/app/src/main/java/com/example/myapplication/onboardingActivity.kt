@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class onboardingActivity : AppCompatActivity() {
 
@@ -64,10 +65,7 @@ class onboardingActivity : AppCompatActivity() {
                         if (currentIndex != 1) {
                             changeImage(-1, R.anim.slide_in_left, R.anim.slide_out_right)
                         }else{
-                            val intent = Intent(this@onboardingActivity, signinActivity::class.java)
-                            startActivity(intent)
-                            finish()
-
+                            checkAuthAndNavigate()
                         }
                         return true
                     }
@@ -108,5 +106,19 @@ class onboardingActivity : AppCompatActivity() {
 
             override fun onAnimationRepeat(animation: Animation?) {}
         })
+    }
+    private fun checkAuthAndNavigate() {
+        // Check if user is already signed in
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        if (currentUser != null) {
+            // User is already signed in, go directly to MainActivity
+            startActivity(Intent(this@onboardingActivity, MainActivity::class.java))
+            finish()
+        } else {
+            // No user is signed in, go to SigninActivity
+            startActivity(Intent(this@onboardingActivity, signinActivity::class.java))
+            finish()
+        }
     }
 }

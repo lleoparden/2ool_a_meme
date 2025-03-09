@@ -6,13 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.VideoView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SplashActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
         // Hide navigation and status bars (Full-Screen Mode)
         View decorView = getWindow().getDecorView();
@@ -33,11 +40,26 @@ public class SplashActivity extends AppCompatActivity {
         // Start the video only when it is prepared to prevent ANR
         videoView.setOnPreparedListener(mp -> videoView.start());
 
-        // Navigate to OnboardingActivity when video finishes
+        // Check authentication when video finishes
         videoView.setOnCompletionListener(mp -> {
+            checkAuthState();
+        });
+    }
+
+    private void checkAuthState() {
+        // Check if user is signed in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            // User is already signed in, go to MainActivity
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(intent);
+        } else {
+            // No user is signed in, go to onboarding
             Intent intent = new Intent(SplashActivity.this, onboardingActivity.class);
             startActivity(intent);
-            finish(); // Close the splash activity
-        });
+        }
+
+        finish(); // Close the splash activity
     }
 }
