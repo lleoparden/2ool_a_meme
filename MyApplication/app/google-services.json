@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "64922201275",
+    "project_id": "oolameme-eae9d",
+    "storage_bucket": "oolameme-eae9d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64922201275:android:c0321c87d90db36a780d9e",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64922201275-pcka8pkl7qhad9sdgggthmesi5839pma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "81ffd8394f62d1366295786140f5f53572b745b9"
+          }
+        },
+        {
+          "client_id": "64922201275-ut509lk36166mgfcj6s8his1tkt08in0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzIvkMDWTxvn2KkZqjBy6p-JosW3RICvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64922201275-ut509lk36166mgfcj6s8his1tkt08in0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
