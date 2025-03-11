@@ -12,14 +12,15 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="439dp"
-        android:layout_height="297dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:cropToPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/red_rectangle" />
+        app:srcCompat="@drawable/yellow_rectangle" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -30,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:srcCompat="@drawable/yellow_rectangle_with_shadow" />
+        app:srcCompat="@drawable/blue_rectangle_with_shadow" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -54,8 +55,19 @@
         app:srcCompat="@drawable/logo" />
 
 
+    <ImageView
+        android:id="@+id/account"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="128dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/account" />
+
     <ImageButton
-        android:id="@+id/sign_in"
+        android:id="@+id/create_account"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginBottom="184dp"
@@ -67,30 +79,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/sign_in_yellow" />
+        app:srcCompat="@drawable/create_account" />
 
     <ImageButton
-        android:id="@+id/google_sign_in"
+        android:id="@+id/go_sign_in"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginBottom="68dp"
         android:adjustViewBounds="true"
         android:background="@null"
-        android:clickable="true"
-        android:enabled="true"
-        android:focusable="true"
+        android:contextClickable="true"
         android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/sign_in" />
+
+    <ImageButton
+        android:id="@+id/google_sign_up"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:clickable="true"
+        android:focusable="true"
+        android:enabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/google_sign_in" />
 
+
     <EditText
         android:id="@+id/EmailAddress"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="420dp"
+        android:layout_marginBottom="464dp"
         android:background="@drawable/edit_text_border"
         android:hint="البريد الإلكتروني"
         android:inputType="textEmailAddress"
@@ -101,14 +129,13 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="336dp"
+        android:layout_marginBottom="396dp"
         android:background="@drawable/edit_text_border"
         android:hint="كلمة السر"
         android:inputType="textPassword"
@@ -122,22 +149,44 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:id="@+id/go_back"
-        android:layout_width="44dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:adjustViewBounds="true"
-        android:background="@null"
-        android:clickable="true"
-        android:enabled="true"
-        android:focusable="true"
-        android:rotationY="179"
-        android:scaleType="fitCenter"
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="332dp"
+        android:background="@drawable/edit_text_border"
+        android:hint="الإسم"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textColorHint="#B1AFAF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="268dp"
+        android:background="@drawable/edit_text_border"
+        android:hint="رقم التليفون"
+        android:inputType="phone"
+        android:padding="12dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textColorHint="#B1AFAF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

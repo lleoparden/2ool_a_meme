@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -27,42 +28,25 @@ class signinActivity : AppCompatActivity() {
     private lateinit var googleSignInButton: ImageButton
     private lateinit var createAccountButton: ImageButton
     private lateinit var signInButton: ImageButton
+    private lateinit var goSignInButton: ImageButton
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var nameEditText: EditText
     private lateinit var phoneEditText: EditText
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var backButton: ImageButton
 
     // Request code for Google Sign-In
     private val RC_SIGN_IN = 9001
 
+    // Flag to track which layout is currently displayed
+    private var isSignUpLayout = true
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.sign_in)
-
-        // Initialize views
-        googleSignInButton = findViewById(R.id.google_sign_in)
-        createAccountButton = findViewById(R.id.create_account)
-        signInButton = findViewById(R.id.sign_in)
-        emailEditText = findViewById(R.id.EmailAddress)
-        passwordEditText = findViewById(R.id.password)
-        nameEditText = findViewById(R.id.name)
-        phoneEditText = findViewById(R.id.phone_number)
-
-        // Set up click listeners
-        googleSignInButton.setOnClickListener {
-            signInWithGoogle()
-        }
-
-        createAccountButton.setOnClickListener {
-            createUserWithEmailPassword()
-        }
-
-        signInButton.setOnClickListener {
-            signInWithEmailPassword()
-        }
 
         // Initialize Firebase Auth
         auth = Firebase.auth
@@ -74,6 +58,60 @@ class signinActivity : AppCompatActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        // Start with sign-up layout
+        setupSignUpLayout()
+    }
+
+    private fun setupSignUpLayout() {
+        setContentView(R.layout.sign_up)
+        isSignUpLayout = true
+
+        // Initialize views
+        googleSignInButton = findViewById(R.id.google_sign_up)
+        createAccountButton = findViewById(R.id.create_account)
+        emailEditText = findViewById(R.id.EmailAddress)
+        passwordEditText = findViewById(R.id.password)
+        nameEditText = findViewById(R.id.name)
+        phoneEditText = findViewById(R.id.phone_number)
+        goSignInButton = findViewById(R.id.go_sign_in)
+
+        // Set up click listeners
+        googleSignInButton.setOnClickListener {
+            signInWithGoogle()
+        }
+
+        createAccountButton.setOnClickListener {
+            createUserWithEmailPassword()
+        }
+
+        goSignInButton.setOnClickListener {
+            setupSignInLayout()
+        }
+    }
+
+    private fun setupSignInLayout() {
+        setContentView(R.layout.sign_in)
+        isSignUpLayout = false
+
+        // Initialize sign-in views
+        signInButton = findViewById(R.id.sign_in)
+        backButton = findViewById(R.id.go_back)
+        emailEditText = findViewById(R.id.EmailAddress) // Make sure these IDs exist in sign_in layout
+        passwordEditText = findViewById(R.id.password)
+        googleSignInButton = findViewById(R.id.google_sign_in)
+
+        backButton.setOnClickListener {
+            setupSignUpLayout()
+        }
+
+        googleSignInButton.setOnClickListener {
+            signInWithGoogle()
+        }
+
+        signInButton.setOnClickListener {
+            signInWithEmailPassword()
+        }
     }
 
     private fun signInWithGoogle() {
@@ -237,6 +275,16 @@ class signinActivity : AppCompatActivity() {
         } else {
             // User is signed out
             Toast.makeText(this, "Please sign in", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onBackPressed() {
+        if (!isSignUpLayout) {
+            // If currently on sign-in layout, switch to sign-up
+            setupSignUpLayout()
+        } else {
+            // Otherwise, perform normal back button behavior
+            super.onBackPressed()
         }
     }
 
