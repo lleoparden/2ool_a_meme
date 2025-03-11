@@ -2,6 +2,8 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
@@ -17,6 +19,7 @@ class onboardingActivity : AppCompatActivity() {
     private lateinit var imageView1: ImageView
     private lateinit var imageView2: ImageView
     private lateinit var gestureDetector: GestureDetector
+    private val handler = Handler(Looper.getMainLooper())
 
     private val images = arrayOf(
         R.drawable.onboarding1,
@@ -25,6 +28,17 @@ class onboardingActivity : AppCompatActivity() {
     )
     private var currentIndex = 0
     private var isImage1Visible = true // Track which image view is currently showing
+
+    private val autoSwipeRunnable = object : Runnable {
+        override fun run() {
+            if (currentIndex < images.size - 1) {
+                changeImage(-1, R.anim.slide_in_left, R.anim.slide_out_right)
+                handler.postDelayed(this, 10000) // Schedule next auto-swipe
+            } else {
+                checkAuthAndNavigate()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,14 +71,14 @@ class onboardingActivity : AppCompatActivity() {
                 if (e1 != null && e2 != null) {
                     val diffX = e2.x - e1.x
                     if (diffX > 100) { // Swipe Right
-                        if (currentIndex != 0 ) {
+                        if (currentIndex != 0) {
                             changeImage(1, R.anim.slide_in_right, R.anim.slide_out_left)
                         }
                         return true
                     } else if (diffX < -100) { // Swipe Left
-                        if (currentIndex != 1) {
+                        if (currentIndex != images.size - 1) {
                             changeImage(-1, R.anim.slide_in_left, R.anim.slide_out_right)
-                        }else{
+                        } else {
                             checkAuthAndNavigate()
                         }
                         return true
@@ -73,9 +87,12 @@ class onboardingActivity : AppCompatActivity() {
                 return false
             }
         })
+
+        startAutoSwipe()
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+        resetAutoSwipeTimer() // Reset auto-swipe timer on interaction
         return gestureDetector.onTouchEvent(event!!) || super.onTouchEvent(event)
     }
 
@@ -83,16 +100,13 @@ class onboardingActivity : AppCompatActivity() {
         val fadeOut = AnimationUtils.loadAnimation(this, animOut)
         val fadeIn = AnimationUtils.loadAnimation(this, animIn)
 
-        // Select which image view is currently visible
         val currentImageView = if (isImage1Visible) imageView1 else imageView2
         val nextImageView = if (isImage1Visible) imageView2 else imageView1
 
-        // Calculate the next index correctly
         currentIndex = (currentIndex + direction + images.size) % images.size
         nextImageView.setImageResource(images[currentIndex])
         nextImageView.visibility = View.VISIBLE
 
-        // Play animations
         currentImageView.startAnimation(fadeOut)
         nextImageView.startAnimation(fadeIn)
 
@@ -107,18 +121,28 @@ class onboardingActivity : AppCompatActivity() {
             override fun onAnimationRepeat(animation: Animation?) {}
         })
     }
-    private fun checkAuthAndNavigate() {
-        // Check if user is already signed in
-        val currentUser = FirebaseAuth.getInstance().currentUser
 
+    private fun startAutoSwipe() {
+        handler.postDelayed(autoSwipeRunnable, 3000) // Start auto-swipe after 3s
+    }
+
+    private fun resetAutoSwipeTimer() {
+        handler.removeCallbacks(autoSwipeRunnable)
+        handler.postDelayed(autoSwipeRunnable, 3000) // Restart auto-swipe after inactivity
+    }
+
+    private fun checkAuthAndNavigate() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            // User is already signed in, go directly to MainActivity
             startActivity(Intent(this@onboardingActivity, MainActivity::class.java))
-            finish()
         } else {
-            // No user is signed in, go to SigninActivity
             startActivity(Intent(this@onboardingActivity, signinActivity::class.java))
-            finish()
         }
+        finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacks(autoSwipeRunnable)
     }
 }
