@@ -31,9 +31,9 @@ class onboardingActivity : AppCompatActivity() {
 
     private val autoSwipeRunnable = object : Runnable {
         override fun run() {
-            if (currentIndex < images.size - 1) {
+            if (currentIndex != 1) {
                 changeImage(-1, R.anim.slide_in_left, R.anim.slide_out_right)
-                handler.postDelayed(this, 10000) // Schedule next auto-swipe
+                handler.postDelayed(this, 7000) // Schedule next auto-swipe
             } else {
                 checkAuthAndNavigate()
             }
@@ -76,7 +76,7 @@ class onboardingActivity : AppCompatActivity() {
                         }
                         return true
                     } else if (diffX < -100) { // Swipe Left
-                        if (currentIndex != images.size - 1) {
+                        if (currentIndex !=  1) {
                             changeImage(-1, R.anim.slide_in_left, R.anim.slide_out_right)
                         } else {
                             checkAuthAndNavigate()
@@ -123,12 +123,12 @@ class onboardingActivity : AppCompatActivity() {
     }
 
     private fun startAutoSwipe() {
-        handler.postDelayed(autoSwipeRunnable, 3000) // Start auto-swipe after 3s
+        handler.postDelayed(autoSwipeRunnable, 7000) // Start auto-swipe after 3s
     }
 
     private fun resetAutoSwipeTimer() {
         handler.removeCallbacks(autoSwipeRunnable)
-        handler.postDelayed(autoSwipeRunnable, 3000) // Restart auto-swipe after inactivity
+        handler.postDelayed(autoSwipeRunnable, 7000) // Restart auto-swipe after inactivity
     }
 
     private fun checkAuthAndNavigate() {

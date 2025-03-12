@@ -10,70 +10,120 @@
     android:clipToPadding="false"
     tools:context=".MainActivity">
 
+    <!-- Guidelines for responsive positioning -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="846dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent="0.05"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_end" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_start"
+        app:layout_constraintGuide_percent="0.95"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <!-- Top red rectangle -->
+
+    <!-- Center yellow rectangle -->
+
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="439dp"
-        android:layout_height="297dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-1dp"
         android:adjustViewBounds="true"
         android:cropToPadding="true"
+        android:translationY="-5dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_end"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/red_rectangle" />
+        app:srcCompat="@drawable/red_rectangle"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="167dp"
-        android:layout_height="352dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
         android:cropToPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintWidth_percent="0.4"
         app:srcCompat="@drawable/yellow_rectangle_with_shadow" />
 
+    <!-- Cat image -->
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="214dp"
-        android:layout_height="333dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
+        app:layout_constraintDimensionRatio="H,1:1.5"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHeight_percent="0.38"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5"
         app:srcCompat="@drawable/thumbsup_cat" />
 
+    <!-- Logo -->
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="100dp"
-        android:layout_height="81dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintHeight_percent="0.1"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
         app:layout_constraintVertical_bias="0.22"
+        app:layout_constraintWidth_percent="0.25"
         app:srcCompat="@drawable/logo" />
 
+    <!-- Sign in button -->
+
+    <!-- Google sign in button -->
+
+    <!-- Email input -->
+
+    <!-- Password input -->
+
+    <!-- Back button -->
 
     <ImageButton
         android:id="@+id/sign_in"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="184dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
         android:background="@null"
-        android:contextClickable="true"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:translationY="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/google_sign_in"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.6"
+        app:layout_constraintWidth_percent="0.3"
         app:srcCompat="@drawable/sign_in_yellow" />
 
     <ImageButton
         android:id="@+id/google_sign_in"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="68dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:clickable="true"
@@ -82,15 +132,17 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintWidth_percent="0.4"
         app:srcCompat="@drawable/google_sign_in" />
 
     <EditText
         android:id="@+id/EmailAddress"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="420dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/edit_text_border"
         android:hint="البريد الإلكتروني"
         android:inputType="textEmailAddress"
@@ -99,16 +151,18 @@
         android:textColor="#000000"
         android:textColorHint="#B1AFAF"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.722"
+        app:layout_constraintWidth_percent="0.75" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="336dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/edit_text_border"
         android:hint="كلمة السر"
         android:inputType="textPassword"
@@ -119,15 +173,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.543"
+        app:layout_constraintWidth_percent="0.75" />
 
     <ImageButton
         android:id="@+id/go_back"
-        android:layout_width="44dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:clickable="true"
@@ -135,9 +190,11 @@
         android:focusable="true"
         android:rotationY="179"
         android:scaleType="fitCenter"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.1"
         app:srcCompat="@android:drawable/ic_media_play" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
