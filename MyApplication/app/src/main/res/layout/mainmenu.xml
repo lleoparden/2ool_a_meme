@@ -98,7 +98,7 @@
 
     <!-- Bottom navigation buttons using horizontal chain for equal spacing -->
     <ImageButton
-        android:id="@+id/nav_button1"
+        android:id="@+id/livechat"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
@@ -109,7 +109,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/nav_button2"
+        app:layout_constraintEnd_toStartOf="@+id/shop"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/bottom_bar"
@@ -117,7 +117,7 @@
         app:srcCompat="@drawable/mogtama3" />
 
     <ImageButton
-        android:id="@+id/nav_button2"
+        android:id="@+id/shop"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
@@ -128,14 +128,14 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/nav_button3"
-        app:layout_constraintStart_toEndOf="@+id/nav_button1"
+        app:layout_constraintEnd_toStartOf="@+id/games"
+        app:layout_constraintStart_toEndOf="@+id/livechat"
         app:layout_constraintTop_toTopOf="@id/bottom_bar"
         app:layout_constraintWidth_percent="0.16"
         app:srcCompat="@drawable/matgar" />
 
     <ImageButton
-        android:id="@+id/nav_button3"
+        android:id="@+id/games"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
@@ -146,14 +146,14 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/nav_button4"
-        app:layout_constraintStart_toEndOf="@+id/nav_button2"
+        app:layout_constraintEnd_toStartOf="@+id/shar7"
+        app:layout_constraintStart_toEndOf="@+id/shop"
         app:layout_constraintTop_toTopOf="@id/bottom_bar"
         app:layout_constraintWidth_percent="0.16"
         app:srcCompat="@drawable/al3ab" />
 
     <ImageButton
-        android:id="@+id/nav_button4"
+        android:id="@+id/shar7"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
@@ -164,14 +164,14 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/nav_button5"
-        app:layout_constraintStart_toEndOf="@+id/nav_button3"
+        app:layout_constraintEnd_toStartOf="@+id/homebutton"
+        app:layout_constraintStart_toEndOf="@+id/games"
         app:layout_constraintTop_toTopOf="@id/bottom_bar"
         app:layout_constraintWidth_percent="0.16"
         app:srcCompat="@drawable/shar7" />
 
     <ImageButton
-        android:id="@+id/nav_button5"
+        android:id="@+id/homebutton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
@@ -183,20 +183,278 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nav_button4"
+        app:layout_constraintStart_toEndOf="@+id/shar7"
         app:layout_constraintTop_toTopOf="@id/bottom_bar"
         app:layout_constraintWidth_percent="0.16"
         app:srcCompat="@drawable/mainmenu_nav_panel" />
 
-    <Button
-        android:id="@+id/signoutbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+
+
+    <ImageButton
+        android:id="@+id/shar7_big"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="true"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="@+id/background"
-        app:layout_constraintStart_toStartOf="@+id/background"
-        app:layout_constraintTop_toTopOf="@+id/background" />
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.465"
+        app:layout_constraintWidth_percent="0.4"
+        app:srcCompat="@drawable/mainmenu_3" />
+
+    <ImageButton
+        android:id="@+id/merch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.765"
+        app:layout_constraintWidth_percent="0.4"
+        app:srcCompat="@drawable/mainmenu_2" />
+
+    <ImageButton
+        android:id="@+id/games_big"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.465"
+        app:layout_constraintWidth_percent="0.4"
+        app:srcCompat="@drawable/mainmenu_4" />
+
+    <ImageButton
+        android:id="@+id/jokes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.765"
+        app:layout_constraintWidth_percent="0.4"
+        app:srcCompat="@drawable/mainmenu_1" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="3:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintVertical_bias="0.119"
+        app:layout_constraintWidth_percent="0.4"
+        app:srcCompat="@drawable/mainmenu__" />
+
+    <HorizontalScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:fillViewport="true"
+        android:layoutDirection="rtl"
+        android:overScrollMode="always"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        app:layout_constraintBottom_toTopOf="@+id/shar7_big"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.137"
+        app:layout_constraintWidth_percent="0.90">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/image1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/mainmenu_scroll3" />
+
+            <ImageButton
+                android:id="@+id/image2"
+                android:layout_width="355dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/mainmenu_scroll3" />
+
+            <ImageButton
+                android:id="@+id/image3"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/mainmenu_scroll3" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/dimming_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#99000000"
+        android:alpha="0"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Sidebar layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sidebar_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="80dp"
+        android:background="#FFFFFF"
+        android:translationX="-1000dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_end"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_bar">
+
+        <!-- Sidebar header -->
+        <TextView
+            android:id="@+id/sidebar_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#F0F0F0"
+            android:padding="16dp"
+            android:text="Menu"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Sidebar content - Replace with your actual menu items -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sidebar_header">
+
+            <!-- Sample menu items -->
+
+            <TextView
+                android:id="@+id/menu_item_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="18sp"
+                android:fontFamily="@font/vollkorn_medium"
+                android:padding="16dp"
+                android:text="المفضلة"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/menu_item_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="18sp"
+                android:fontFamily="@font/vollkorn_medium"
+                android:padding="16dp"
+                android:text="الاعدادات"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/menu_item_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="18sp"
+                android:fontFamily="@font/vollkorn_medium"
+                android:padding="16dp"
+                android:text="الايفنتات"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/menu_item_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="18sp"
+                android:fontFamily="@font/vollkorn_medium"
+                android:padding="16dp"
+                android:text="الرئيسية"
+                android:textSize="16sp" />
+
+
+            <Button
+                android:id="@+id/signoutbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:translationY="350dp"
+                app:layout_constraintVertical_bias="0.027" />
+
+            <!-- Add more menu items as needed -->
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
