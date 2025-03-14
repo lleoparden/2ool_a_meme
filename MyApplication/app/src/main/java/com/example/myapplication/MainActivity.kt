@@ -26,6 +26,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sidebarButton: ImageButton
     private lateinit var dimmingOverlay: View
     private lateinit var sidebarContainer: ConstraintLayout
+    private lateinit var chatButton: ImageButton
+    private lateinit var shopButton1: ImageButton
+    private lateinit var shopButton2: ImageButton
+    private lateinit var explainationButton1: ImageButton
+    private lateinit var explainationButton2: ImageButton
+    private lateinit var gamesButton1: ImageButton
+    private lateinit var gamesButton2: ImageButton
     private var isSidebarOpen = false
     private lateinit var auth: FirebaseAuth
 
@@ -46,7 +53,56 @@ class MainActivity : AppCompatActivity() {
         dimmingOverlay = findViewById(R.id.dimming_overlay)
         sidebarContainer = findViewById(R.id.sidebar_container)
         sidebar_header = findViewById(R.id.sidebar_header)
+        chatButton = findViewById(R.id.livechat)
+        shopButton1 = findViewById(R.id.shop)
+        shopButton2 = findViewById(R.id.merch)
+        explainationButton1 = findViewById(R.id.shar7)
+        explainationButton2 = findViewById(R.id.shar7_big)
+        gamesButton1 = findViewById(R.id.games)
+        gamesButton2 = findViewById(R.id.games_big)
 
+
+        chatButton.setOnClickListener {
+            val intent = Intent(this, chatRoomActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        shopButton1.setOnClickListener {
+            val intent = Intent(this, shopActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        shopButton2.setOnClickListener {
+            val intent = Intent(this, shopActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        explainationButton1.setOnClickListener {
+            val intent = Intent(this, explainationActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        explainationButton2.setOnClickListener {
+            val intent = Intent(this, explainationActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        gamesButton1.setOnClickListener {
+            val intent = Intent(this, gamesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        gamesButton2.setOnClickListener {
+            val intent = Intent(this, gamesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         // Set initial state
         sidebarContainer.post {
@@ -85,7 +141,7 @@ class MainActivity : AppCompatActivity() {
         val googleSignInClient = GoogleSignIn.getClient(this, gso)
         googleSignInClient.signOut().addOnCompleteListener(this) { task ->
             // After sign out, redirect to onboarding or sign-in screen
-            val intent = Intent(this@MainActivity, onboardingActivity::class.java)
+            val intent = Intent(this@MainActivity, onBoardingActivity::class.java)
             // Clear the back stack so the user can't go back to MainActivity
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)

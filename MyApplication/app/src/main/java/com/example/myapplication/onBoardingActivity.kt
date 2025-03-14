@@ -14,7 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
-class onboardingActivity : AppCompatActivity() {
+class onBoardingActivity : AppCompatActivity() {
 
     private lateinit var imageView1: ImageView
     private lateinit var imageView2: ImageView
@@ -134,9 +134,9 @@ class onboardingActivity : AppCompatActivity() {
     private fun checkAuthAndNavigate() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            startActivity(Intent(this@onboardingActivity, MainActivity::class.java))
+            startActivity(Intent(this@onBoardingActivity, MainActivity::class.java))
         } else {
-            startActivity(Intent(this@onboardingActivity, signinActivity::class.java))
+            startActivity(Intent(this@onBoardingActivity, SigninActivity::class.java))
         }
         finish()
     }

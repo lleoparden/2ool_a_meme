@@ -56,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             // No user is signed in, go to onboarding
-            Intent intent = new Intent(SplashActivity.this, onboardingActivity.class);
+            Intent intent = new Intent(SplashActivity.this, onBoardingActivity.class);
             startActivity(intent);
         }
 

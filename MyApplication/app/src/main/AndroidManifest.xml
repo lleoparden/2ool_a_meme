@@ -29,12 +29,12 @@
 
         <!-- onboarding Activity -->
         <activity
-            android:name=".onboardingActivity"
+            android:name=".onBoardingActivity"
             android:exported="true" />
 
         <!-- signin Activity -->
         <activity
-            android:name=".signinActivity"
+            android:name=".SigninActivity"
             android:exported="true" />
 
         <meta-data
@@ -45,6 +45,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".chatRoomActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>

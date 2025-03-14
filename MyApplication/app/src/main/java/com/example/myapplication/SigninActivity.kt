@@ -23,7 +23,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
-class signinActivity : AppCompatActivity() {
+class SigninActivity : AppCompatActivity() {
 
     private lateinit var googleSignInButton: ImageButton
     private lateinit var createAccountButton: ImageButton
