@@ -16,15 +16,18 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.TextView
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var signOutButton: Button
+    private lateinit var sidebar_header: TextView
     private lateinit var sidebarButton: ImageButton
     private lateinit var dimmingOverlay: View
     private lateinit var sidebarContainer: ConstraintLayout
     private var isSidebarOpen = false
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         sidebarButton = findViewById(R.id.sidebar_button)
         dimmingOverlay = findViewById(R.id.dimming_overlay)
         sidebarContainer = findViewById(R.id.sidebar_container)
+        sidebar_header = findViewById(R.id.sidebar_header)
+
 
         // Set initial state
         sidebarContainer.post {
@@ -62,6 +67,11 @@ class MainActivity : AppCompatActivity() {
                 toggleSidebar()
             }
         }
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        sidebar_header.text = "Welcome, " + user?.displayName ?: "Guest"
+
+
     }
 
     private fun signOut() {

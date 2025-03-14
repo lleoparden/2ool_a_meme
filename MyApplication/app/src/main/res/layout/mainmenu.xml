@@ -409,7 +409,9 @@
                 android:fontFamily="@font/vollkorn_medium"
                 android:padding="16dp"
                 android:text="المفضلة"
-                android:textSize="16sp" />
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/menu_item_2"
@@ -419,7 +421,9 @@
                 android:fontFamily="@font/vollkorn_medium"
                 android:padding="16dp"
                 android:text="الاعدادات"
-                android:textSize="16sp" />
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/menu_item_3"
@@ -429,7 +433,9 @@
                 android:fontFamily="@font/vollkorn_medium"
                 android:padding="16dp"
                 android:text="الايفنتات"
-                android:textSize="16sp" />
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/menu_item_4"
@@ -439,7 +445,9 @@
                 android:fontFamily="@font/vollkorn_medium"
                 android:padding="16dp"
                 android:text="الرئيسية"
-                android:textSize="16sp" />
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
             <Button
