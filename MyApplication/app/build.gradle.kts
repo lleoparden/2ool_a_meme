@@ -56,6 +56,17 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("androidx.credentials:credentials:1.2.0")
     implementation ("com.google.firebase:firebase-database-ktx:20.2.2")
+
+
+    // Firebase core and authentication
+    implementation ("com.google.firebase:firebase-core:22.0.0")
+    implementation ("com.google.firebase:firebase-auth:22.0.0")
+    implementation ("com.google.firebase:firebase-database:20.2.2")
+    implementation ("com.google.firebase:firebase-storage:20.2.1")
+
+        // Image loading library
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

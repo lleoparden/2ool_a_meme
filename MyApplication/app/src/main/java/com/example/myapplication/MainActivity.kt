@@ -55,12 +55,11 @@ class MainActivity : AppCompatActivity() {
         sidebar_header = findViewById(R.id.sidebar_header)
         chatButton = findViewById(R.id.livechat)
         shopButton1 = findViewById(R.id.shop)
-        shopButton2 = findViewById(R.id.merch)
         explainationButton1 = findViewById(R.id.shar7)
-        explainationButton2 = findViewById(R.id.shar7_big)
         gamesButton1 = findViewById(R.id.games)
+        explainationButton2 = findViewById(R.id.shar7_big)
         gamesButton2 = findViewById(R.id.games_big)
-
+        shopButton2 = findViewById(R.id.merch)
 
         chatButton.setOnClickListener {
             val intent = Intent(this, chatRoomActivity::class.java)

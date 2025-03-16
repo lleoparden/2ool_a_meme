@@ -50,6 +50,18 @@
             android:name=".chatRoomActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".explainationActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".shopActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".gamesActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>
