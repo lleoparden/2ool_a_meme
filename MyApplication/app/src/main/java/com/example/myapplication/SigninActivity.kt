@@ -152,7 +152,7 @@ class SigninActivity : AppCompatActivity() {
                         }
 
                     // Store additional user data in Firebase Database
-                    storeUserData(user?.uid, name, email, phone)
+                    storeUserData(user?.uid, name, email, phone,5)
 
                     updateUI(user)
                 } else {
@@ -192,7 +192,7 @@ class SigninActivity : AppCompatActivity() {
             }
     }
 
-    private fun storeUserData(userId: String?, name: String, email: String, phone: String) {
+    private fun storeUserData(userId: String?, name: String, email: String, phone: String,pfp:Int) {
         userId?.let {
             val database = FirebaseDatabase.getInstance()
             val userRef = database.getReference("users").child(it)
@@ -201,6 +201,7 @@ class SigninActivity : AppCompatActivity() {
             userData["name"] = name
             userData["email"] = email
             userData["phone"] = phone
+            userData["pfp"]=pfp
 
             userRef.setValue(userData)
                 .addOnSuccessListener {
@@ -250,7 +251,8 @@ class SigninActivity : AppCompatActivity() {
                                 it.uid,
                                 it.displayName ?: "",
                                 it.email ?: "",
-                                "" // No phone number from Google Auth
+                                "123-456-7890", // No phone number from Google Auth
+                                5
                             )
                         }
                     }

@@ -15,8 +15,17 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.ContentValues
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,8 +42,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var explainationButton2: ImageButton
     private lateinit var gamesButton1: ImageButton
     private lateinit var gamesButton2: ImageButton
+    private lateinit var accountButton: ImageButton
     private var isSidebarOpen = false
+
+
+    // Firebase
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+
+
+    // User data
+    private lateinit var currentUsername: String
+    private lateinit var currentUserId: String
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         explainationButton2 = findViewById(R.id.shar7_big)
         gamesButton2 = findViewById(R.id.games_big)
         shopButton2 = findViewById(R.id.merch)
+        accountButton = findViewById(R.id.account)
 
         chatButton.setOnClickListener {
             val intent = Intent(this, chatRoomActivity::class.java)
@@ -122,9 +145,31 @@ class MainActivity : AppCompatActivity() {
                 toggleSidebar()
             }
         }
+
+
+        database = FirebaseDatabase.getInstance()
+
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
         sidebar_header.text = "Welcome, " + user?.displayName ?: "Guest"
+
+        currentUserId = auth.currentUser!!.uid
+        val userRef = database.getReference("users").child(currentUserId)
+        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    currentUsername = snapshot.child("name").getValue(String::class.java) ?: "Anonymous"
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@MainActivity, "Failed to load user data", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        currentUserId = auth.currentUser!!.uid
+        loadUserData(currentUserId)
+
 
 
     }
@@ -204,5 +249,40 @@ class MainActivity : AppCompatActivity() {
 
         isSidebarOpen = !isSidebarOpen
     }
+    private fun loadUserData(userId: String?) {
+        userId?.let {
+            val database = FirebaseDatabase.getInstance()
+            val userRef = database.getReference("users").child(it)
+
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val pfpIndex = snapshot.child("pfp").getValue(Int::class.java) ?: 0
+                        updateProfilePicture(pfpIndex)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e(ContentValues.TAG, "Error loading user data", error.toException())
+                }
+            })
+        }
+    }
+
+    private fun updateProfilePicture(pfpIndex: Int) {
+
+        val pfps = arrayOf(
+            R.drawable.pfp1,
+            R.drawable.pfp2,
+            R.drawable.pfp3,
+            R.drawable.pfp4,
+            R.drawable.pfp5,
+            R.drawable.pfp6,
+        )
+
+        val index = (pfpIndex - 1).coerceIn(0, pfps.size - 1)
+        accountButton.setImageResource(pfps[index])
+    }
+
 
 }

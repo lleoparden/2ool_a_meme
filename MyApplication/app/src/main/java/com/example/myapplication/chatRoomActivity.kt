@@ -1,7 +1,9 @@
 package com.example.myapplication
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,8 +29,9 @@ class chatRoomActivity : AppCompatActivity() {
     private lateinit var shopButton: ImageButton
     private lateinit var explainationButton: ImageButton
     private lateinit var gamesButton: ImageButton
-    private lateinit var liveChatButton: ImageButton
     private lateinit var accountButton: ImageButton
+
+
 
     // Chat components
     private lateinit var recyclerView: RecyclerView
@@ -48,7 +51,7 @@ class chatRoomActivity : AppCompatActivity() {
     private var lastSeenTimestamp: Long = 0
 
     // Swear words list (can be expanded)
-    private val swearWords = listOf("fuck", "shit", "ass", "bitch", "hell","FUCK","cunt")
+    private val swearWords = listOf("fuck", "shit", "ass", "bitch", "hell","FUCK","cunt","CUNT","BITCH","SHIT")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,12 +88,14 @@ class chatRoomActivity : AppCompatActivity() {
             }
         })
 
+        currentUserId = auth.currentUser!!.uid
+        loadUserData(currentUserId)
+
         // Initialize UI components
         shopButton = findViewById(R.id.shop)
         explainationButton = findViewById(R.id.shar7)
         gamesButton = findViewById(R.id.games)
         homeButton = findViewById(R.id.homebutton)
-        liveChatButton = findViewById(R.id.livechat)
         accountButton = findViewById(R.id.account)
 
         recyclerView = findViewById(R.id.messagesRecyclerView)
@@ -131,12 +136,8 @@ class chatRoomActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // The livechat button would just refresh/reload this activity
-        liveChatButton.setOnClickListener {
-            val intent = Intent(this, chatRoomActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+
+
 
 //        accountButton.setOnClickListener {
 //            val intent = Intent(this, ProfileActivity::class.java)
@@ -187,16 +188,17 @@ class chatRoomActivity : AppCompatActivity() {
                     }
                 }
 
+                // You need to implement these other methods required by the ChildEventListener interface
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                    // Handle edited messages if needed
+                    // Handle changed child
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    // Handle deleted messages if needed
+                    // Handle removed child
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                    // Not needed for this implementation
+                    // Handle moved child
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -216,12 +218,21 @@ class chatRoomActivity : AppCompatActivity() {
     }
 
     private fun sendMessage(text: String) {
-        // Process text for mentions
+        try {
+            // Check if username is initialized
+            if (!::currentUsername.isInitialized) {
+                Toast.makeText(this, "Please wait, still loading user data", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+        val userPfpIndex = getUserPfpIndex()
         val mentionedUsers = ArrayList<String>()
         var isPrivate = false
         var processedText = text
 
-        // Check for @mentions
+        // Create message object with pfpIndex
+
+
         if (text.contains("@")) {
             val words = text.split(" ")
             for (word in words) {
@@ -232,7 +243,6 @@ class chatRoomActivity : AppCompatActivity() {
                 }
             }
         }
-
         // Filter swear words
         processedText = filterSwearWords(processedText)
 
@@ -242,6 +252,7 @@ class chatRoomActivity : AppCompatActivity() {
             text = processedText,
             senderId = currentUserId,
             senderName = currentUsername,
+            pfpIndex = userPfpIndex, // Use integer index instead of ImageView
             timestamp = System.currentTimeMillis(),
             imageUrl = null,
             isPrivate = isPrivate,
@@ -250,12 +261,21 @@ class chatRoomActivity : AppCompatActivity() {
 
         // Save message to Firebase
         messagesRef.child(message.id).setValue(message)
-            .addOnSuccessListener {
-                // Message sent successfully
-            }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Failed to send message: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        } catch (e: Exception) {
+            Log.e("ChatRoom", "Error sending message: ${e.message}", e)
+            Toast.makeText(this, "Error sending message: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Helper method to get user's profile picture index
+    private var userPfpIndex: Int = 1
+    private fun getUserPfpIndex(): Int {
+        // This should read from your local variable that's set when profile loads
+        // If you don't have it stored locally, fetch it from Firebase first
+        return userPfpIndex
     }
 
     private fun filterSwearWords(text: String): String {
@@ -282,6 +302,40 @@ class chatRoomActivity : AppCompatActivity() {
         val userPresenceRef = database.getReference("user_presence").child(currentUserId)
         userPresenceRef.child("online").setValue(true)
     }
+    private fun loadUserData(userId: String?) {
+        userId?.let {
+            val database = FirebaseDatabase.getInstance()
+            val userRef = database.getReference("users").child(it)
+
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        userPfpIndex = snapshot.child("pfp").getValue(Int::class.java) ?: 1
+                        updateProfilePicture(userPfpIndex)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e(ContentValues.TAG, "Error loading user data", error.toException())
+                }
+            })
+        }
+    }
+
+    private fun updateProfilePicture(pfpIndex: Int) {
+
+        val pfps = arrayOf(
+            R.drawable.pfp1,
+            R.drawable.pfp2,
+            R.drawable.pfp3,
+            R.drawable.pfp4,
+            R.drawable.pfp5,
+            R.drawable.pfp6,
+        )
+
+        val index = (pfpIndex - 1).coerceIn(0, pfps.size - 1)
+        accountButton.setImageResource(pfps[index])
+    }
 }
 
 // Message data class
@@ -290,6 +344,7 @@ data class Message(
     val text: String = "",
     val senderId: String = "",
     val senderName: String = "",
+    val pfpIndex: Int = 0, // Change ImageView to Integer index
     val timestamp: Long = 0,
     val imageUrl: String? = null,
     val isPrivate: Boolean = false,
@@ -303,10 +358,16 @@ class MessageAdapter(
     private val currentUserId: String
 ) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
-    class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class MessageViewHolder(view: View, viewType: Int) : RecyclerView.ViewHolder(view) {
         val senderName: TextView = view.findViewById(R.id.messageSender)
         val messageText: TextView = view.findViewById(R.id.messageText)
         val messageTime: TextView = view.findViewById(R.id.messageTime)
+        // Initialize profile picture for both sent and received messages
+        val profilePicture: ImageView? = when (viewType) {
+            VIEW_TYPE_RECEIVED -> view.findViewById(R.id.account_received)
+            VIEW_TYPE_SENT -> view.findViewById(R.id.account_sent) // Make sure this ID exists in message_sent.xml
+            else -> null
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -316,15 +377,28 @@ class MessageAdapter(
         } else {
             layoutInflater.inflate(R.layout.message_received, parent, false)
         }
-        return MessageViewHolder(view)
+        return MessageViewHolder(view, viewType)
     }
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val message = messages[position]
 
+        val pfps = arrayOf(
+            R.drawable.pfp1,
+            R.drawable.pfp2,
+            R.drawable.pfp3,
+            R.drawable.pfp4,
+            R.drawable.pfp5,
+            R.drawable.pfp6,
+        )
+
         // Set message text and sender
         holder.senderName.text = message.senderName
         holder.messageText.text = message.text
+
+        // Set profile picture based on pfpIndex
+        val pfpIndex = (message.pfpIndex - 1).coerceIn(0, pfps.size - 1)
+        holder.profilePicture?.setImageResource(pfps[pfpIndex])
 
         // Format and set timestamp
         val sdf = SimpleDateFormat("hh:mm a", Locale.getDefault())

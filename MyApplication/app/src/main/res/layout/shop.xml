@@ -85,7 +85,7 @@
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.15"
-        app:srcCompat="@drawable/account_icon" />
+        />
 
     <!-- Bottom bar -->
     <com.google.android.material.imageview.ShapeableImageView
