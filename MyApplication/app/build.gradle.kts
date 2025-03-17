@@ -43,29 +43,27 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // Firebase - use the BOM for consistent versioning
+    // Firebase - single BOM for consistent versioning
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
-    implementation("com.google.firebase:firebase-auth-ktx") // Or just firebase-auth if not using ktx
-    implementation("com.google.firebase:firebase-firestore-ktx") // Or just firebase-firestore if not using ktx
-// Add Credential Manager dependencies -  use latest stable versions!
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-storage-ktx")
+    implementation(libs.firebase.inappmessaging)
+
+    // Credential Manager
     implementation("androidx.credentials:credentials:1.3.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
-    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1") //Again, check for the latest version
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
-    implementation ("com.google.firebase:firebase-auth-ktx:22.3.0")
-    implementation ("com.google.android.gms:play-services-auth:20.7.0")
-    implementation ("androidx.credentials:credentials:1.2.0")
-    implementation ("com.google.firebase:firebase-database-ktx:20.2.2")
+    // Image loading library
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
-
-    // Firebase core and authentication
-    implementation ("com.google.firebase:firebase-core:22.0.0")
-    implementation ("com.google.firebase:firebase-auth:22.0.0")
-    implementation ("com.google.firebase:firebase-database:20.2.2")
-    implementation ("com.google.firebase:firebase-storage:20.2.1")
-
-        // Image loading library
-    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    // UI components
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.cardview:cardview:1.0.0")
 
     // Testing
     testImplementation(libs.junit)

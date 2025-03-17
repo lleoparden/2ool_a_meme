@@ -5,12 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#009FC6"
+    android:windowSoftInputMode="adjustResize"
     tools:context=".chatRoomActivity">
 
-
-
     <!-- Guidelines for responsive positioning -->
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
         android:layout_width="wrap_content"
@@ -39,8 +37,9 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.88" />
 
-
     <!-- Background Image -->
+
+    <!-- Top bar -->
     <ImageView
         android:id="@+id/background"
         android:layout_width="0dp"
@@ -49,13 +48,11 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/vector" />
-    <!-- Top bar -->
-
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/top_bar"
@@ -68,10 +65,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Account button using percentage-based positioning -->
+
+    <!-- Chat messages recycler view -->
     <ImageButton
         android:id="@+id/account"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:clickable="true"
@@ -81,11 +81,58 @@
         app:layout_constraintBottom_toBottomOf="@id/top_bar"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.695"
         app:layout_constraintWidth_percent="0.15"
         app:srcCompat="@drawable/account_icon" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/messageInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_bar" />
+
+    <!-- Message input area -->
+    <LinearLayout
+        android:id="@+id/messageInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline_Top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <EditText
+            android:id="@+id/messageInput"
+            android:layout_width="214dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_edit_text"
+            android:hint="Type a message..."
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#DE3A3B"
+            android:text="Send"
+            android:textColor="#FFFFFF"
+            android:textColorLink="#DE3A3B"/>
+
+    </LinearLayout>
 
     <!-- Bottom bar -->
     <com.google.android.material.imageview.ShapeableImageView
@@ -190,5 +237,5 @@
         app:layout_constraintWidth_percent="0.16"
         app:srcCompat="@drawable/al_ra2esya" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+

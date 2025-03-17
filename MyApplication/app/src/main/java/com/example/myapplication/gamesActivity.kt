@@ -11,7 +11,7 @@ class gamesActivity : AppCompatActivity() {
     private lateinit var homeButton: ImageButton
     private lateinit var shopButton: ImageButton
     private lateinit var explainationButton: ImageButton
-    private lateinit var gamesButton: ImageButton
+    private lateinit var livechat: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,7 +20,7 @@ class gamesActivity : AppCompatActivity() {
 
         shopButton = findViewById(R.id.shop)
         explainationButton = findViewById(R.id.shar7)
-        gamesButton = findViewById(R.id.games)
+        livechat = findViewById(R.id.livechat)
         homeButton = findViewById(R.id.homebutton)
 
         shopButton.setOnClickListener {
@@ -39,8 +39,8 @@ class gamesActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        gamesButton.setOnClickListener {
-            val intent = Intent(this, gamesActivity::class.java)
+        livechat.setOnClickListener {
+            val intent = Intent(this, chatRoomActivity::class.java)
             startActivity(intent)
         }
 

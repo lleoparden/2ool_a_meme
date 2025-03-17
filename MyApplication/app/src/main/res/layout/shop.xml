@@ -41,6 +41,9 @@
 
 
     <!-- Background Image -->
+    <!-- Top bar -->
+
+
     <ImageView
         android:id="@+id/background"
         android:layout_width="0dp"
@@ -54,8 +57,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/vector" />
-    <!-- Top bar -->
-
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/top_bar"
