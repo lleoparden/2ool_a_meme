@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="product_detail_title" type="id" />
+    <item name="back_button" type="id" />
+    <item name="product_rating" type="id" />
+    <item name="rating_value" type="id" />
+    <item name="stock_status" type="id" />
+    <item name="product_description" type="id" />
+    <item name="bottom_price" type="id" />
+</resources>

@@ -53,6 +53,7 @@
         android:id="@+id/account"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:clickable="true"
@@ -62,16 +63,17 @@
         app:layout_constraintBottom_toBottomOf="@id/top_bar"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.15"
-        />
+        app:layout_constraintVertical_bias="0.695"
+        app:layout_constraintWidth_percent="0.15" />
+
 
     <!-- Sidebar button with percentage-based sizing -->
     <ImageButton
         android:id="@+id/sidebar_button"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:clickable="true"
@@ -80,8 +82,9 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@id/top_bar"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.695"
         app:layout_constraintWidth_percent="0.1"
         app:srcCompat="@drawable/sidebar" />
 

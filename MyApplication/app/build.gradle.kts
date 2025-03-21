@@ -51,6 +51,8 @@ dependencies {
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation(libs.firebase.inappmessaging)
 
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
+
     // Credential Manager
     implementation("androidx.credentials:credentials:1.3.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
@@ -59,6 +61,8 @@ dependencies {
 
     // Image loading library
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.firebase.firestore)
+    implementation(libs.filament.android)
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
     // UI components

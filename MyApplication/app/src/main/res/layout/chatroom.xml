@@ -40,6 +40,7 @@
     <!-- Background Image -->
 
     <!-- Top bar -->
+
     <ImageView
         android:id="@+id/background"
         android:layout_width="0dp"
@@ -48,7 +49,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -67,6 +68,7 @@
     <!-- Account button using percentage-based positioning -->
 
     <!-- Chat messages recycler view -->
+
     <ImageButton
         android:id="@+id/account"
         android:layout_width="0dp"
@@ -83,8 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.695"
-        app:layout_constraintWidth_percent="0.15"
-        />
+        app:layout_constraintWidth_percent="0.15" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messagesRecyclerView"
